@@ -15,7 +15,9 @@ const Navbar = () => {
   return (
     <div className="flex max-w-screen-2xl mx-auto items-center justify-between py-5 font-medium px-5 border-b-2 border-gray-200 w-full h-20">
       <div className="flex gap-5 text-sm text-gray-500">
-        <p>logo</p>
+        <Link to="/">
+          <p> logo</p>
+        </Link>
       </div>
       <div className=" hidden sm:flex gap-4">
         {menu.map((item, idx) => {
