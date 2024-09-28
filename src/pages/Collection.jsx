@@ -5,7 +5,7 @@ import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
-  const { products } = useContext(ShopContext); // Fetching products from context
+  const { products, search, showSearch } = useContext(ShopContext); // Fetching products from context
   const [showFilter, setShowFilter] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -49,6 +49,12 @@ const Collection = () => {
         subCategory.includes(product.subCategory)
       );
     }
+    // search option
+    if (showSearch && search) {
+      filtered = filtered.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
 
     return filtered;
   };
@@ -81,7 +87,7 @@ const Collection = () => {
   // Run this on initial render and when products, category, subCategory, or sortType changes
   useEffect(() => {
     handleFilterAndSort();
-  }, [products, category, subCategory, sortType]);
+  }, [products, category, subCategory, sortType, search, showSearch]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t px-5">
